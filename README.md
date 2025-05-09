@@ -13,3 +13,12 @@
 ```                                                                  
 # Artis
 ## A kitty terminal album art view for mpd
+
+## Dependencies:
+* kitty
+* mpd
+* mpc
+* ffmpeg
+* imagemagick
+
+

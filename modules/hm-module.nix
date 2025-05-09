@@ -1,0 +1,61 @@
+self: {
+  lib,
+  pkgs,
+  config,
+  inputs,
+  ...
+}: let
+  inherit (pkgs.stdenv.hostPlatform) system;
+  cfg = config.programs.artis;
+  package = inputs.self.packages.${system}.default;
+in {
+  options.programs.artis = {
+    enable = lib.mkEnableOption "Enable artis";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = package;
+      description = "Package of artis to use";
+      nullable = true;
+    };
+    colors = {
+      color1 = lib.mkOption {
+        type = lib.types.str;
+        default = "#e8e1e1";
+        description = "Color of 1st line";
+      };
+      color2 = lib.mkOption {
+        type = lib.types.str;
+        default = "#e8e1e1";
+        description = "Color of 1st word of 2nd line";
+      };
+      color3 = lib.mkOption {
+        type = lib.types.str;
+        default = "#e8e1e1";
+        description = "Color of 2nd word of 2nd line";
+      };
+      color4 = lib.mkOption {
+        type = lib.types.str;
+        default = "#e8e1e1";
+        description = "Color of 3rd word of 2nd line";
+      };
+      color5 = lib.mkOption {
+        type = lib.types.str;
+        default = "#a585bc";
+        description = "Color of last line";
+      };
+    };
+  };
+  config = lib.mkIf cfg.enable {
+    home.packages = [ lib.mkIf (cfg.package != null) [ cfg.package ];
+
+    xdg.configFile."artis/colors" = lib.mkIf (cfg.colors != { }) {
+      text = ''
+        ${cfg.color1}
+        ${cfg.color2}
+        ${cfg.color3}
+        ${cfg.color4}
+        ${cfg.color5}
+      '';
+    };
+  };
+}

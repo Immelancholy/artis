@@ -8,6 +8,7 @@
   outputs = {
     self,
     nixpkgs,
+    ...
   }: let
     systems = [
       "x86_64-linux"
@@ -20,13 +21,15 @@
     packages = forAllSystems (
       system: let
         pkgs = import nixpkgs {inherit system;};
-      in rec {
+      in {
         artis = pkgs.callPackage ./artis.nix {
           inherit system;
         };
-        default = artis;
+        default = self.packages.${system}.artis;
       }
     );
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    homeManagerModules.default = import ./modules/hm-module.nix;
   };
 }
