@@ -2,6 +2,7 @@
 TMP="/tmp"
 COVER="$TMP/albumArt.jpg"
 MUSIC_DIR="$HOME/Music"
+dependencies=(ffmpeg kitten convert mpc)
 
 hex_to_rgb () {
 	HEX=$(echo "$1" | tr -d '#' | tr '[:lower:]' '[:upper:]')
@@ -96,6 +97,13 @@ cleanup_error () {
 	tput cvvis
 	exit 1
 }
+
+for dependency in "${dependencies[@]}"; do
+	if ! command -v "$dependency"; then
+		printf '%s' "Missing $dependency! Please install it!"
+		cleanup_error
+	fi
+done
 
 cleanup () {
 	stty echo
