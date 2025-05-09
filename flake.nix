@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     ...
@@ -30,6 +30,6 @@
     );
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    homeManagerModules.default = import ./modules/hm-module.nix;
+    homeManagerModules.default = import ./modules/hm-module.nix inputs;
   };
 }
