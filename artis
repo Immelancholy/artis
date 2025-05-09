@@ -108,8 +108,7 @@ trap cleanup_error SIGINT
 
 get_art () {
 	DIR="$MUSIC_DIR/$(dirname "$(mpc current -f %file%)")"
-	ffmpeg -i "$MUSIC_DIR/$(mpc current -f %file%)" "$COVER" -y &> /dev/null
-	if ! [ $? -eq 0 ]; then
+	if ! 	ffmpeg -i "$MUSIC_DIR/$(mpc current -f %file%)" "$COVER" -y &> /dev/null; then
 		for ART in "$DIR/cover."{png,jpg,webp}; do
 			if [ -f "$ART" ]; then
 				convert "$ART" $COVER &> /dev/null
