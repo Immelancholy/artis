@@ -54,6 +54,8 @@ You can change the colors by creating a file called colors in .config/artis like
 #a585bc
 ```
 
+Artis defaults to finding music in ```$HOME/Music````, but this can be changed either with the ```--music_dir``` flag or setting the ```ARTIS_MUSIC_DIR``` environment variable
+
 ## Nix with flakes
 
 Add in your ```flake.nix```:
