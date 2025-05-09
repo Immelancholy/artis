@@ -53,5 +53,6 @@ You can change the colors by creating a file called colors in .config/artis like
 #a585bc
 ```
 
+## Nix
 
 
