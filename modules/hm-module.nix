@@ -11,7 +11,7 @@ in {
   options.programs.artis = {
     enable = lib.mkEnableOption "Enable artis";
     package = lib.mkOption {
-      type = with lib.types; nullOr package;
+      type = lib.types.package;
       default = package;
       description = "Package of artis to use";
     };
