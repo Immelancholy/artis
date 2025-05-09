@@ -53,6 +53,62 @@ You can change the colors by creating a file called colors in .config/artis like
 #a585bc
 ```
 
-## Nix
+## Nix with flakes
 
+Add in your ```flake.nix```:
 
+```
+    inputs = {
+        artis = {
+            url = "github:Immelancholy/artis";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+    };
+```
+Pass inputs to your modules using ```specialArgs``` and then in your ```configuration.nix``` type:
+
+```
+    environment.systemPackages = [
+        inputs.artis.packages.${pkgs.system}.default
+    ];
+```
+
+## Nix with flakes + home-manager
+
+Add in your ```flake.nix```:
+
+```
+    inputs = {
+        artis = {
+            url = "github:Immelancholy/artis";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+    };
+```
+
+Add the flakes home-manager module to your home configuration:
+
+```
+home-manager.users.mela = {
+    imports = [
+        inputs.artis.homeManagerModules.default
+    ];
+};
+```
+
+Then enable and configure the module like so:
+
+```
+{
+  programs.artis = {
+    enable = true;
+    colors = {
+      color1 = "#e8e1e1";
+      color2 = "#e8e1e1";
+      color3 = "#e8e1e1";
+      color4 = "#e8e1e1";
+      color5 = "#a585bc";
+    };
+  };
+}
+```
