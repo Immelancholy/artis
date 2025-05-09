@@ -16,6 +16,8 @@
 
 ![SS1](/Screenshots/SS1.png?raw=true)
 
+![SS2](/Screenshots/SS2.png?raw=true)
+
 ## Dependencies:
 * kitty
 * mpd
