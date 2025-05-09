@@ -21,11 +21,11 @@
     packages = forAllSystems (
       system: let
         pkgs = import nixpkgs {inherit system;};
-      in {
+      in rec {
         artis = pkgs.callPackage ./artis.nix {
           inherit system;
         };
-        default = self.packages.${system}.artis;
+        default = artis;
       }
     );
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
