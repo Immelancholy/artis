@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-TMP="/tmp"
-COVER="$TMP/albumArt.jpg"
-MUSIC_DIR="$HOME/Music"
+TMP=${TMPDIR:-/tmp}
+COVER="$TMP/artis.jpg"
+MUSIC_DIR=${ARTIS_MUSIC_DIR:=$HOME/Music}
 dependencies=(ffmpeg kitten convert mpc bash)
 
 hex_to_rgb () {
