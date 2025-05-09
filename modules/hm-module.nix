@@ -46,9 +46,9 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    home.packages = [ lib.mkIf (cfg.package != null) [ cfg.package ];
+    home.packages = lib.mkIf (cfg.package != null) [cfg.package];
 
-    xdg.configFile."artis/colors" = lib.mkIf (cfg.colors != { }) {
+    xdg.configFile."artis/colors" = lib.mkIf (cfg.colors != {}) {
       text = ''
         ${cfg.color1}
         ${cfg.color2}
