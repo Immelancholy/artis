@@ -1,13 +1,12 @@
-{
+inputs: {
   lib,
   pkgs,
-  self,
   config,
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
   cfg = config.programs.artis;
-  package = self.packages.${system}.default;
+  package = inputs.self.packages.${system}.default;
 in {
   options.programs.artis = {
     enable = lib.mkEnableOption "Enable artis";
