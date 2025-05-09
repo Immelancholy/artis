@@ -12,10 +12,9 @@ in {
   options.programs.artis = {
     enable = lib.mkEnableOption "Enable artis";
     package = lib.mkOption {
-      type = lib.types.package;
+      type = with lib.types; nullOr package;
       default = package;
       description = "Package of artis to use";
-      nullable = true;
     };
     colors = {
       color1 = lib.mkOption {
