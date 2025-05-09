@@ -14,6 +14,8 @@
 # Artis
 ## A kitty terminal album art view for mpd
 
+![SS1](/Screenshots/SS1.png?raw=true)
+
 ## Dependencies:
 * kitty
 * mpd
