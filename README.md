@@ -20,6 +20,7 @@
 * mpc
 * ffmpeg
 * imagemagick
+* bash
 
 ## Installation
 ```
