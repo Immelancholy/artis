@@ -49,11 +49,11 @@ in {
 
     xdg.configFile."artis/colors" = lib.mkIf (cfg.colors != {}) {
       text = ''
-        ${cfg.color1}
-        ${cfg.color2}
-        ${cfg.color3}
-        ${cfg.color4}
-        ${cfg.color5}
+        ${cfg.colors.color1}
+        ${cfg.colors.color2}
+        ${cfg.colors.color3}
+        ${cfg.colors.color4}
+        ${cfg.colors.color5}
       '';
     };
   };
