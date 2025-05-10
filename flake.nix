@@ -22,9 +22,7 @@
       system: let
         pkgs = import nixpkgs {inherit system;};
       in rec {
-        artis = pkgs.callPackage ./artis.nix {
-          inherit system;
-        };
+        artis = pkgs.callPackage ./artis.nix {};
         default = artis;
       }
     );
