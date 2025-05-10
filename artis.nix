@@ -1,4 +1,3 @@
-# {writeShellScriptBin, ...}: writeShellScriptBin "artis" (builtins.readFile ./artis)
 {
   writeShellApplication,
   pkgs,
