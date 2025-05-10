@@ -9,11 +9,9 @@ writeShellApplication {
 
   runtimeInputs = with pkgs; [
     kitty
-    mpd
     mpc
     ffmpeg
     imagemagick
-    bash
   ];
 
   text = builtins.readFile ./artis;
