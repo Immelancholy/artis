@@ -1,3 +1,3 @@
-final: _prev: {
-  artis = import ../artis.nix final.pkgs;
+{
+  artis = final: prev: import ../artis.nix final.pkgs;
 }
