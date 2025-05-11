@@ -10,6 +10,7 @@
     nixpkgs,
     ...
   }: let
+    inherit (self) outputs;
     systems = [
       "x86_64-linux"
       "aarch64-linux"
@@ -26,6 +27,9 @@
         default = artis;
       }
     );
+
+    overlays = import ./overlays {inherit outputs;};
+
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     homeManagerModules.default = import ./modules/hm-module.nix self;
