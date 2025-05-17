@@ -136,16 +136,23 @@ get_art () {
 print_art () {
 	get_art
 	title=$(mpc current --format %title%)
-	album=$(mpc current --format %album%)
+	title=${title:0:$cols}
 	artist=$(mpc current --format %artist%)
+	artist_len=${#artist}
+	artist=${artist:0:$cols}
+	divider=" - "
+	divider_len=${#divider}
+	divider=${divider:0:$cols}
+	album=$(mpc current --format %album%)
+	cols_album=$((cols - artist_len - divider_len))
+	album=${album:0:$cols_album}
+	bottom="─────────────────────────────────╶"
+	bottom=${bottom:0:$cols}
 	line1="${col1}$title"
-	line2p1="${col2}$artist "
-	len2p1=${#artist}
-	line2p2="${col3}- "
+	line2p1="${col2}$artist"
+	line2p2="${col3}$divider"
 	line2p3="${col4}$album"
-	cols_album=$((cols-len2p1-3))
-	line2p3="${line2p3:0:$cols_album}"
-	line3="${col5}─────────────────────────────────╶"
+	line3="${col5}$bottom"
 	kitten icat --align=center "$COVER"
 	printf '%s\n' "$line1"
 	printf '%s' "$line2p1"
