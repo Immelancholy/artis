@@ -98,6 +98,7 @@ done
 cleanup_error () {
 	stty echo
 	stty icanon
+	printf "\e[0 q"
 	tput cvvis
 	exit 1
 }
@@ -112,6 +113,7 @@ done
 cleanup () {
 	stty echo
 	stty icanon
+	printf "\e[0 q"
 	tput cvvis
 	clear
 	exit 0
@@ -174,6 +176,7 @@ main () {
 			FIRST_RUN=false
 			clear
 			get_colors
+			printf "\e[3 q"
 			tput civis
 			stty -icanon
 			stty -echo
