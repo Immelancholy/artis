@@ -97,6 +97,7 @@ done
 
 cleanup_error () {
 	stty echo
+	stty icanon
 	tput cvvis
 	exit 1
 }
@@ -110,6 +111,7 @@ done
 
 cleanup () {
 	stty echo
+	stty icanon
 	tput cvvis
 	clear
 	exit 0
@@ -171,9 +173,9 @@ main () {
 		if [ "$FIRST_RUN" == true ]; then
 			FIRST_RUN=false
 			clear
-			stty -echo
-			tput civis
 			get_colors
+			stty -icanon
+			stty -echo
 			cols_old=$cols
 			song_old="placeholder"
 		fi
@@ -198,6 +200,7 @@ main () {
 		if [ "$key" = 'q' ]; then
 			break
 		fi
+		tput civis
 	done
 	cleanup
 }
