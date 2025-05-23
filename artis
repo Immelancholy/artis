@@ -157,6 +157,7 @@ print_art () {
 	line2p3="${col4}$album"
 	line3="${col5}$bottom"
 	kitten icat --align=center "$COVER"
+	printf '%s\n' ""
 	printf '%s\n' "$line1"
 	printf '%s' "$line2p1"
 	printf '%s' "$line2p2"
