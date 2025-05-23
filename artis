@@ -156,7 +156,7 @@ print_art () {
 	line2p2="${col3}$divider"
 	line2p3="${col4}$album"
 	line3="${col5}$bottom"
-	chafa -f kitty --align=center "$COVER"
+	echo -n " " && chafa -O 9 -f kitty --align=top,center --margin-right 1 "$COVER"
 	printf '%s\n' ""
 	printf '%s\n' "$line1"
 	printf '%s' "$line2p1"
