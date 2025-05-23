@@ -5,7 +5,7 @@ set -o pipefail
 TMP=${TMPDIR:-/tmp}
 COVER="$TMP/artis.jpg"
 MUSIC_DIR=${ARTIS_MUSIC_DIR:=$HOME/Music}
-dependencies=(ffmpeg kitten convert mpc bash)
+dependencies=(ffmpeg chafa convert mpc bash)
 
 hex_to_rgb () {
 	HEX=$(echo "$1" | tr -d '#' | tr '[:lower:]' '[:upper:]')
@@ -156,7 +156,7 @@ print_art () {
 	line2p2="${col3}$divider"
 	line2p3="${col4}$album"
 	line3="${col5}$bottom"
-	kitten icat --align=center "$COVER"
+	chafa -f kitty --align=center "$COVER"
 	printf '%s\n' ""
 	printf '%s\n' "$line1"
 	printf '%s' "$line2p1"

@@ -12,14 +12,15 @@
  \_\___\     /____/_/\/_/    \_\/\_\/    \/_________/ \_____\/                                                                            
 ```                                                                  
 # Artis
-## A kitty terminal album art view for mpd
+## A kitty graphics protocol album art view for mpd
 
 ![SS1](/Screenshots/SS1.png?raw=true)
 
 ![SS2](/Screenshots/SS2.png?raw=true)
 
 ## Dependencies:
-* kitty
+* chafa
+* a terminal emulator supporting the kitty graphics protocol
 * mpd
 * mpc
 * ffmpeg

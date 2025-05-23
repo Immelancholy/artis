@@ -7,7 +7,7 @@ writeShellApplication {
   name = "artis";
 
   runtimeInputs = with pkgs; [
-    kitty
+    chafa
     mpc
     ffmpeg
     imagemagick
