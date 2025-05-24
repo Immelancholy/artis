@@ -6,6 +6,10 @@
 writeShellApplication {
   name = "artis";
 
+  excludeShellChecks = [
+    "SC2086"
+  ];
+
   runtimeInputs = with pkgs; [
     chafa
     mpc
