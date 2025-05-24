@@ -24,7 +24,6 @@
 * mpd
 * mpc
 * ffmpeg
-* imagemagick
 * bash
 
 ## Installation
