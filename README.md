@@ -12,7 +12,7 @@
  \_\___\     /____/_/\/_/    \_\/\_\/    \/_________/ \_____\/                                                                            
 ```                                                                  
 # Artis
-## A kitty graphics protocol album art view for mpd
+## A terminal album art view for mpd
 
 ![SS1](/Screenshots/SS1.png?raw=true)
 
@@ -20,7 +20,6 @@
 
 ## Dependencies:
 * chafa
-* a terminal emulator supporting the kitty graphics protocol
 * mpd
 * mpc
 * ffmpeg
@@ -43,11 +42,12 @@ $ cp artis /usr/bin
 
 ## Usage
 ```
-usage: artis [-h|--help] [--music_dir \"path/to/dir\"]
+usage: artis [-h|--help] [--music_dir "path/to/dir"] [-c|--chafa-args "-f kitty"]
 
 optional arguments:
-	 -h, --help            show this help message and exit
-	 --music_dir           the music directory which MPD plays from
+         -h, --help            show this help message and exit
+         -m, --music_dir       the music directory which MPD plays from
+         -c, --chafa-args      the args to pass to chafa
 ```
 You can change the colors by creating a file called colors in .config/artis like so. It takes in these 5 colors in hexadecimal, and uses them for the colors of the text.
 ```

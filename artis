@@ -5,6 +5,7 @@ set -o pipefail
 TMP=${TMPDIR:-/tmp}
 COVER="$TMP/artis.png"
 MUSIC_DIR=${ARTIS_MUSIC_DIR:=$HOME/Music}
+chafa_args=""
 dependencies=(ffmpeg chafa mpc bash)
 
 hex_to_rgb () {
@@ -66,22 +67,27 @@ show_help() {
 \_\___\     /____/_/\/_/    \_\/\_\/    \/_________/ \_____\/        
                                                                     
 
-usage: artis [-h|--help] [--music_dir \"path/to/dir\"]
+usage: artis [-h|--help] [--music_dir \"path/to/dir\"] [-c|--chafa-args \"-f kitty\"]
 
 optional arguments:
 	 -h, --help            show this help message and exit
-	 --music_dir           the music directory which MPD plays from
+	 -m, --music_dir       the music directory which MPD plays from
+	 -c, --chafa-args      the args to pass to chafa
 "
 }
 
-options=$(getopt -o h --long 'music_dir:,verbose,help' -- "$@")
+options=$(getopt -o 'm:,c:,h' --long 'music_dir:,help,chafa-args:' -- "$@")
 eval set -- "$options"
 
 while true; do
 		case "$1" in
-				--music_dir)
+				-m|--music_dir)
 						shift;
 						MUSIC_DIR=$1
+						;;
+				-c|--chafa-args)
+						shift;
+						chafa_args="$1"
 						;;
 				-h|--help)
 						show_help
@@ -156,8 +162,7 @@ print_art () {
 	line2p2="${col3}$divider"
 	line2p3="${col4}$album"
 	line3="${col5}$bottom"
-	chafa -O 9 -f kitty --align=top,center --relative on "$COVER"
-	# printf '%s\n' ""
+	chafa $chafa_args "$COVER"
 	printf '%s\n' "$line1"
 	printf '%s' "$line2p1"
 	printf '%s' "$line2p2"
