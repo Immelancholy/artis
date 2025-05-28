@@ -10,6 +10,9 @@ writeShellApplication {
     "SC2086"
   ];
 
+  bashOptions = [
+  ];
+
   runtimeInputs = with pkgs; [
     chafa
     mpc
@@ -17,5 +20,7 @@ writeShellApplication {
     imagemagick
   ];
 
-  text = builtins.readFile ./artis;
+  text = ''
+    ${builtins.readFile ./artis}
+  '';
 }
