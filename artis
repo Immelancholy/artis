@@ -162,7 +162,7 @@ print_art () {
 	line2p2="${col3}$divider"
 	line2p3="${col4}$album"
 	line3="${col5}$bottom"
-	chafa $chafa_args "$COVER"
+	chafa --scale=max $chafa_args "$COVER"
 	printf '%s\n' "$line1"
 	printf '%s' "$line2p1"
 	printf '%s' "$line2p2"
