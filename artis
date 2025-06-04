@@ -131,14 +131,14 @@ get_art () {
 		if ! ffmpeg -i "$MUSIC_DIR/$(mpc current -f %file%)" "$COVER" -y &> /dev/null; then
 			for ART in "$DIR/cover."{png,jpg,webp}; do
 				if [ -f "$ART" ]; then
-					ffmpeg -i "$ART" "$COVER" -y &> /dev/null
+					ffmpeg -y -i "$ART" "$COVER" &> /dev/null
 					ARTLESS=false
 				fi
 			done
 			if [ "$ARTLESS" == true ]; then
 				for ART in "$DIR/../cover."{png,jpg,webp}; do
 					if [ -f "$ART" ]; then
-						ffmpeg -i "$ART" "$COVER" -y &> /dev/null
+						ffmpeg -y -i "$ART" "$COVER" &> /dev/null
 						ARTLESS=false
 					fi
 				done
