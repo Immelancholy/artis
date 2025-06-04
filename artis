@@ -144,6 +144,7 @@ get_art () {
 				done
 			fi
 		fi
+		ARTLESS=false
 	fi
 }
 
