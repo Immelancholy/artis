@@ -213,7 +213,7 @@ main () {
 			break
 		fi
 	done
-	cleanup
 }
 
 main
+cleanup
