@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -o nounset
-set -o pipefail
 TMP=${TMPDIR:-/tmp}
 COVER="$TMP/artis.png"
 MUSIC_DIR=${ARTIS_MUSIC_DIR:=$HOME/Music}
@@ -10,6 +8,9 @@ dependencies=(ffmpeg chafa mpc bash)
 if [ -n "$TMUX" ]; then
 	chafa_args="--passthrough tmux "
 fi
+
+set -o nounset
+set -o pipefail
 
 hex_to_rgb () {
 	HEX=$(echo "$1" | tr -d '#' | tr '[:lower:]' '[:upper:]')
