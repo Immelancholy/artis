@@ -7,6 +7,10 @@ MUSIC_DIR=${ARTIS_MUSIC_DIR:=$HOME/Music}
 chafa_args=""
 dependencies=(ffmpeg chafa mpc bash)
 
+if [ -n "$TMUX" ]; then
+	chafa_args="--passthrough tmux "
+fi
+
 hex_to_rgb () {
 	HEX=$(echo "$1" | tr -d '#' | tr '[:lower:]' '[:upper:]')
 	DIGITS=$(( ${#HEX} / 3 ))
@@ -86,7 +90,7 @@ while true; do
 						;;
 				-c|--chafa-args)
 						shift;
-						chafa_args="$1"
+						chafa_args="${chafa_args}$1"
 						;;
 				-h|--help)
 						show_help
