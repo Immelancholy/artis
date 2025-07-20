@@ -4,6 +4,7 @@ COVER="$TMP/artis.png"
 MUSIC_DIR=${ARTIS_MUSIC_DIR:=$HOME/Music}
 chafa_args=""
 dependencies=(ffmpeg chafa mpc bash)
+depth=2
 
 if [ -n "$TMUX" ]; then
 	chafa_args="--passthrough tmux "
@@ -71,16 +72,17 @@ show_help() {
 \_\___\     /____/_/\/_/    \_\/\_\/    \/_________/ \_____\/        
                                                                     
 
-usage: artis [-h|--help] [--music_dir \"path/to/dir\"] [-c|--chafa-args \"-f kitty\"]
+usage: artis [-h|--help] [-m|--music_dir \"path/to/dir\"] [-c|--chafa-args \"-f kitty\"] [-d|--depth \"2\"]
 
 optional arguments:
 	 -h, --help            show this help message and exit
 	 -m, --music_dir       the music directory which MPD plays from
 	 -c, --chafa-args      the args to pass to chafa
+	 -d, --depth					 the folder depth to search for album art with, defaults to 1 folder up.
 "
 }
 
-options=$(getopt -o 'm:,c:,h' --long 'music_dir:,help,chafa-args:' -- "$@")
+options=$(getopt -o 'd:,m:,c:,h' --long 'depth:,music_dir:,help,chafa-args:' -- "$@")
 eval set -- "$options"
 
 while true; do
@@ -96,6 +98,10 @@ while true; do
 				-h|--help)
 						show_help
 						exit
+						;;
+				-d|--depth)
+						shift;
+						depth="$1"
 						;;
 				--)
 						shift
@@ -130,19 +136,31 @@ cleanup () {
 
 trap cleanup_error SIGINT
 
+repeatChar() {
+    local input="$1"
+    local count="$2"
+    printf -v myString '%*s' "$count" ""
+    printf '%s\n' "${myString// /$input}"
+}
+
 get_art () {
 	DIR="$MUSIC_DIR/$(dirname "$(mpc current -f %file%)")"
 	if ! ffmpeg -i "$MUSIC_DIR/$(mpc current -f %file%)" "$COVER" -y &> /dev/null; then
-		for ART in "$DIR/cover."{png,jpg,webp}; do
-			if [ -f "$ART" ]; then
-				ffmpeg -y -i "$ART" "$COVER" &> /dev/null
-			fi
-		done
-			for ART in "$DIR/../cover."{png,jpg,webp}; do
+		found_art=false
+		count=0
+		while $depth > $count; do
+			back=$(repeatChar ../ $count)
+			for ART in "$DIR/${back}cover."{png,jpg,webp}; do
 				if [ -f "$ART" ]; then
 					ffmpeg -y -i "$ART" "$COVER" &> /dev/null
+					found_art=true
 				fi
 			done
+			if [ "$found_art" == "true" ]; then
+				break
+			fi
+			count=$((count + 1))
+		done
 	fi
 }
 
