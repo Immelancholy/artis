@@ -78,7 +78,7 @@ optional arguments:
 	 -h, --help            show this help message and exit
 	 -m, --music_dir       the music directory which MPD plays from
 	 -c, --chafa-args      the args to pass to chafa
-	 -d, --depth					 the folder depth to search for album art with, defaults to 1 folder up.
+	 -d, --depth           the folder depth to search for album art with, defaults to 1 folder up.
 "
 }
 
