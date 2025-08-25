@@ -42,12 +42,13 @@ $ cp artis /usr/bin
 
 ## Usage
 ```
-usage: artis [-h|--help] [--music_dir "path/to/dir"] [-c|--chafa-args "-f kitty"]
+usage: artis [-h|--help] [-m|--music_dir \"path/to/dir\"] [-c|--chafa-args \"-f kitty\"] [-d|--depth \"2\"]
 
 optional arguments:
-         -h, --help            show this help message and exit
-         -m, --music_dir       the music directory which MPD plays from
-         -c, --chafa-args      the args to pass to chafa
+	 -h, --help            show this help message and exit
+	 -m, --music_dir       the music directory which MPD plays from
+	 -c, --chafa-args      the args to pass to chafa
+	 -d, --depth           the folder depth to search for album art with, defaults to 1 folder up.
 ```
 You can change the colors by creating a file called colors in .config/artis like so. It takes in these 5 colors in hexadecimal, and uses them for the colors of the text.
 ```
