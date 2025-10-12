@@ -148,8 +148,8 @@ get_art () {
 	if ! ffmpeg -i "$MUSIC_DIR/$(mpc current -f %file%)" "$COVER" -y &> /dev/null; then
 		found_art=false
 		count=0
-		while $depth > $count; do
-			back=$(repeatChar ../ $count)
+		while (( depth > count )); do
+			back=$(repeatChar ../ "$count")
 			for ART in "$DIR/${back}cover."{png,jpg,webp}; do
 				if [ -f "$ART" ]; then
 					ffmpeg -y -i "$ART" "$COVER" &> /dev/null
