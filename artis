@@ -150,7 +150,7 @@ get_art () {
 		count=0
 		while (( depth > count )); do
 			back=$(repeatChar ../ "$count")
-			for ART in "$DIR/${back}cover."{png,jpg,webp}; do
+			for ART in "$DIR/${back}"{c,C}"over."{png,jpg,webp}; do
 				if [ -f "$ART" ]; then
 					ffmpeg -y -i "$ART" "$COVER" &> /dev/null
 					found_art=true
