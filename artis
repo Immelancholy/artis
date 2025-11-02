@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 TMP=${TMPDIR:-/tmp}
 COVER="$TMP/artis.png"
 MUSIC_DIR=${ARTIS_MUSIC_DIR:=$HOME/Music}
