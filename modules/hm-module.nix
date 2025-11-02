@@ -4,9 +4,8 @@ self: {
   config,
   ...
 }: let
-  inherit (pkgs.stdenv.hostPlatform) system;
   cfg = config.programs.artis;
-  artis = self.packages.${system}.default;
+  artis = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   options.programs.artis = {
     enable = lib.mkEnableOption "Enable artis";
