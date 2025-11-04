@@ -7,7 +7,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
+  Immelancholy:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'Immelancholy' }}
     steps:
@@ -16,7 +16,7 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Enable auto-merge for Dependabot PRs
+      - name: Enable auto-merge for Immelancholy PRs
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
