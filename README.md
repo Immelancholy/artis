@@ -11,6 +11,9 @@
  / / /_       __\ \_\/ / /  \ \ \/_/ /   /\__\/_/___\\ \/___/ /       
  \_\___\     /____/_/\/_/    \_\/\_\/    \/_________/ \_____\/                                                                            
 ```                                                                  
+> [!WARNING]
+> This project is archived in favour of my mpd client [Zarumet](http://github.com/Immelancholy/zarumet)
+
 # Artis
 ## A terminal album art view for mpd
 
